@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* KarnalCode design tokens: Design A "Saathi Warm" */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: #c2410c;
+  --color-saffron: #f97316;
+  --color-sun: #ffc93c;
+  --color-indigo: #1f2a5c;
+  --color-teal: #0f8f7a;
+  --color-ivory: #fff8ef;
+  --color-line: #eadfcf;
+  --color-segment: #efe4d3;
+  --color-muted: #5b6486;
+  --color-peach: #ffe8d6;
+  --color-peach-text: #9a3412;
+  --color-teal-tint: #ddf3ee;
+  --color-teal-text: #0b6b5b;
+  --color-indigo-tint: #e7eaf7;
+  --color-sun-tint: #fff1bf;
+  --color-error: #b42318;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-padding-top: 5rem; /* keeps anchored content clear of the sticky header */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ivory);
+  color: var(--color-indigo);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-indigo);
+}
+
+/* One clear keyboard focus ring everywhere; fields add their own glow on top. */
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 60%, white);
+  outline-offset: 2px;
+}
+
+/* First tab stop on every page: jump past the header to the content. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--color-indigo);
+  color: #fff;
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Horizontal chip rows scroll on phones without a scrollbar. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
